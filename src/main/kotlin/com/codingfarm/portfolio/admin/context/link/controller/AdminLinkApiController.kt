@@ -24,7 +24,7 @@ class AdminLinkApiController (
         return ApiResponse.successCreate()
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     fun putLink(@PathVariable id:Long, @RequestBody form:LinkForm): ResponseEntity<Any>{
         adminLinkService.update(id,form)
 

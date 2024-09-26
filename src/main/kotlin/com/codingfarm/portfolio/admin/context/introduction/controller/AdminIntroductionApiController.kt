@@ -24,7 +24,7 @@ class AdminIntroductionApiController (
         return ApiResponse.successCreate()
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     fun putIntroduction(@PathVariable id:Long, @RequestBody form:IntroductionForm): ResponseEntity<Any>{
         adminIntroductionService.update(id,form)
 

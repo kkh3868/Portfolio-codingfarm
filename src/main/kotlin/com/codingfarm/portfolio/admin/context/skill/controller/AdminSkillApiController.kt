@@ -24,7 +24,7 @@ class AdminSkillApiController (
         return ApiResponse.successCreate()
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     fun putSkill(@PathVariable id:Long, @RequestBody form:SkillForm): ResponseEntity<Any>{
         adminSkillService.update(id,form)
 
