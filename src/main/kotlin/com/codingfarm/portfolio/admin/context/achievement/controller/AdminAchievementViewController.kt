@@ -1,6 +1,6 @@
-package com.codingfarm.portfolio.admin.context.introduction.controller
+package com.codingfarm.portfolio.admin.context.achievement.controller
 
-import com.codingfarm.portfolio.admin.context.introduction.service.AdminIntroductionService
+import com.codingfarm.portfolio.admin.context.achievement.service.AdminAchievementService
 import com.codingfarm.portfolio.admin.data.DateFormElementDTO
 import com.codingfarm.portfolio.admin.data.FormElementDTO
 import com.codingfarm.portfolio.admin.data.SelectFormElementDTO
@@ -11,24 +11,27 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("/admin/introduction")
-class AdminIntroductionController(
-    private val adminIntroductionService: AdminIntroductionService
+@RequestMapping("/admin/achievement")
+class AdminAchievementViewController(
+    private val adminAchievementService: AdminAchievementService
 ) {
     @GetMapping
-    fun introduction(model: Model):String{
+    fun achievement(model: Model):String{
         val formElements = listOf<FormElementDTO>(
-            TextFormElementDTO("content",10),
+            TextFormElementDTO("title",4),
+            TextFormElementDTO("description",8),
+            DateFormElementDTO("achievedDate",5),
+            TextFormElementDTO("host",5),
             SelectFormElementDTO("isActive",2, listOf(true.toString(), false.toString())),
         )
         model.addAttribute("formElements", formElements)
 
-        val table = adminIntroductionService.getIntroductionTable()
+        val table = adminAchievementService.getAchievementTable()
         model.addAttribute("table",table)
         model.addAttribute("detailTable",null)
 
         val pageAttributes = mutableMapOf<String, Any>(
-            Pair("menuName", "Index"),
+            Pair("menuName", "Resume"),
             Pair("pageName", table.name),
             Pair("editable", true),
             Pair("deletable", false),
